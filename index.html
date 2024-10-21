@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDevTools Download</title>
+
+    <script src="gdevtools.js"></script>
+</head>
+<body>
+    <a href="gdevtools.js" download>Download</a>
+
+    <script>
+        (async function(){
+            let a = document.createElement("a")
+            a.href = "javascript:"+encodeURIComponent("(async function(){"+(await (await fetch("/gdevtools.js")).text())+"})()")
+            document.appendChild(a)
+        })()
+        
+    </script>
+</body>
+</html>
