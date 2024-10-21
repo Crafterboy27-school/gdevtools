@@ -54,5 +54,9 @@ const consoleProxyHandler = {
         return Reflect.get(...arguments);
     },
 };
+
+window.addEventListener("error", function(errorMsg, url, lineNumber){
+    console.error(errorMsg, url, lineNumber)
+})
   
 console = new Proxy(oldConsole, consoleProxyHandler);
