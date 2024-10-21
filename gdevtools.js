@@ -45,7 +45,7 @@ const consoleProxyHandler = {
         if(prop=="log"||prop=="error"||prop=="warn"){
             return function(...args){
                 let p = win.document.createElement("p")
-                p.textContent = args.join(" ")
+                p.textContent = JSON.stringify(args)
                 consoleContainer.appendChild(p)
 
                 oldConsole[prop](...args)
@@ -55,8 +55,10 @@ const consoleProxyHandler = {
     },
 };
 
-window.addEventListener("error", function(errorMsg, url, lineNumber){
-    console.error(errorMsg, url, lineNumber)
+window.addEventListener("error", function(e){
+    console.error(e.error.message)
 })
   
 console = new Proxy(oldConsole, consoleProxyHandler);
+
+a.b = 0
